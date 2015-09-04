@@ -1,4 +1,5 @@
-<H1>SIMON: Stream Internet Movies Online Now</H1>
+<H1>SIMON: 
+Stream Internet Movies Online Now</H1>
 
 MVP-stage - an app that lets you stream movies online for free!
 
