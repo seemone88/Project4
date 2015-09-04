@@ -6,7 +6,7 @@ MVP-stage - an app that lets you stream movies online for free!
 
 <h1>TECHNOLOGY</h1>
 
-Mongo, Express, Node.js, Angular
+Mongo, Express, Angular, Node
 
 <strong>Needed:</strong>
 <li>APIs: IMDB and Primwire</li>
