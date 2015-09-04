@@ -6,12 +6,12 @@ MVP-stage - an app that lets you stream movies online for free!
 
 <h1>TECHNOLOGY</h1>
 
-Mongo, Express, Node.js
+Mongo, Express, Angular, Node
 
 <strong>Needed:</strong>
 <li>APIs: IMDB and Primwire</li>
 
-<strong>Wishlist:</strong>
+<strong>BackLog:</strong>
 <li>like netflix to hover over and scroll through movies</li>
 <li>search by genre or ratings</li>
 <li>make a lot of money off of it and not get caught and go to jail or get fined a lot of money because i will blame it all on GA</li>
@@ -29,4 +29,4 @@ Once the user logs there will be a display of popular movies already populated o
 
 <h3> Wire Frame </h3>
 
-![image2](screenshot.png)
+![image2](Screenshot2.jpg)
