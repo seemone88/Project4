@@ -27,3 +27,6 @@ Once the user logs there will be a display of popular movies already populated o
 
 <br><br><br><br>
 
+<h3> Wire Frame </h3>
+
+![image2](screenshot.png)
