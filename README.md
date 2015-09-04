@@ -11,7 +11,7 @@ Mongo, Express, Node.js
 <strong>Needed:</strong>
 <li>APIs: IMDB and Primwire</li>
 
-<strong>Wishlist:</strong>
+<strong>BackLog:</strong>
 <li>like netflix to hover over and scroll through movies</li>
 <li>search by genre or ratings</li>
 <li>make a lot of money off of it and not get caught and go to jail or get fined a lot of money because i will blame it all on GA</li>
