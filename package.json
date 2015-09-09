@@ -18,6 +18,8 @@
     "mongoose": "^4.1.5",
     "morgan": "~1.6.1",
     "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^1.2.0",
     "path": "^0.11.14",
     "serve-favicon": "~2.3.0",
     "xhr2": "^0.1.3"

@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html ng-app="moviesApp">
   <head>
-    <title>S.I.M.O.N</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title><%= title %></title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
-    <script src="javascripts/app.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <script src="/javascripts/app.js"></script>
   </head>
-  <body>
-    <div class="container" ng-controller="MyController as vm">
-
-      <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+  <body class="container">
 
 
+    {{1+2}}
+    <br>
+    <div class="page-header">
+      <h1><%= title %></h1>
+    </div>
+    <div class="container" ng-controller="MyController as vm" >
+      <div class="row text-center">
 
-
-
-
-    <div class="movieThumbnail">
-      <div class="row">
-        <div class="col-sm-6 col-md-4">
-          <div class="thumbnail">
-            <img src="..." alt="...">
-            <div class="caption">
-              <h3>Thumbnail label</h3>
-              <p>...</p>
-              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            <% if (user) { %>
+              <form ng-submit="nm.submit()">
+                <input ng-model="vm.input" id="findMovies" type="text" name="name" value="">
+                <button ng-click="vm.displayMovies()" id="displayMovies">Find</button>
+              </form>
+              <h3>{{vm.input}}</h3>
+          <div class="thumbnails" ng-repeat="el in vm.movies">
+            <div class="seachDiv">
+              <div class="row">
+                <div class="col-sm-10 col-md-2">
+                  <div class="thumbnail">
+                    <img src="https://image.tmdb.org/t/p/w185/811DjJTon9gD6hZ8nCjSitaIXFQ.jpg" alt="...">
+                    <div class="caption">
+                      <h3>Thumbnail label</h3>
+                      <p>...</p>
+                      <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-  </div>
+
+
+              <a href="/logout" class="btn btn-danger">Logout</a>
+            <% } else { %>
+              <a href="/login" class="btn btn-primary">Login</a>
+              <a href="/register" class="btn btn-info">Register</a>
+            <% } %>
+          </div>
 
     </div>
+  </div>
   </body>
 </html>
