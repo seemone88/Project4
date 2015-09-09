@@ -23,7 +23,7 @@
             <% if (user) { %>
               <form ng-submit="nm.submit()">
                 <input ng-model="vm.input" id="findMovies" type="text" name="name" value="">
-                <button ng-click="vm.displayMovies()" id="displayMovies">Find</button>
+                <button ng-click="vm.showMovies()" id="displayMovies">Find</button>
               </form>
               <h3>{{vm.input}}</h3>
           <div class="thumbnails" ng-repeat="el in vm.movies">

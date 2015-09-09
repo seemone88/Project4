@@ -14,12 +14,13 @@
 
 
 function myFactory($http){
-  var search = self.input
+
   var allMoviesUrl = 'http://api.themoviedb.org/3/search/movie?api_key=a3de5c1057ac7354650707d0e6d7df17&query=' + search;
   var movieFactory = {};
+  console.log(allMoviesUrl);
   movieFactory.getAllMovies = function(movies){
     return $http.get(allMoviesUrl)
-    console.log($http.get(allMoviesUrl));
+
   };
   return movieFactory;
   };
@@ -27,10 +28,13 @@ function myFactory($http){
 function MyController($MyFactory){
   // keep track of your scope by asigning this to a variable
   var self = this;
+  var search = self.input
+  self.ifSearched = false;
   self.api = $MyFactory;
   self.movies = [];
   self.oneMovie = null;
-  self.displayMovies = displayMovies;
+
+
 
   self.api.getAllMovies()
   .success(function(data){
@@ -38,17 +42,19 @@ function MyController($MyFactory){
     console.log(self.movies);
   })
 
-  function displayMovies(){
-    console.log(this.input)
-  }
+
 
   self.showMovies = function(movies){
 
-    self.api.getMovies(movies)
+    self.api.getAllMovies(movies)
     .success(function(data){
       self.oneMovie = data;
-    })
 
+      console.log(data);
+    })
+    .error(function(err){
+      console.log(err);
+    })
 
 
 
