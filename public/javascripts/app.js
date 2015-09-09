@@ -38,8 +38,8 @@ function MyController($MyFactory){
     console.log(self.movies);
   })
 
-  function displayMovies($http){
-    myFactory();
+  function displayMovies(){
+    console.log(this.input)
   }
 
   self.showMovies = function(movies){
