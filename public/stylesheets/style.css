@@ -20,3 +20,13 @@ a {
 h3{
   color:yellow;
 }
+
+#poster{
+  height:300px;
+}
+.thumbnail{
+  background-color:black;
+}
+.caption{
+  color:yellow;
+}

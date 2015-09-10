@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 var passport = require('passport');
+var primewire = require('primewire');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

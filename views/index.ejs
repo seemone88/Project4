@@ -12,7 +12,7 @@
   <body class="container">
 
 
-    {{1+2}}
+  
     <br>
     <div class="page-header">
       <h1><%= title %></h1>
@@ -26,16 +26,18 @@
                 <button ng-click="vm.showMovies()" id="displayMovies">Find</button>
               </form>
               <h3>{{vm.input}}</h3>
-          <div class="thumbnails" ng-repeat="el in vm.movies">
+          <div class="thumbnails" >
             <div class="seachDiv">
-              <div class="row">
-                <div class="col-sm-10 col-md-2">
+              <div id="row" class="row">
+                <div class="col-sm-7 col-md-3" ng-repeat="el in vm.allMovie">
+                  <div ng-if="$index % 4 == 0"></div>
                   <div class="thumbnail">
-                    <img src="https://image.tmdb.org/t/p/w185/811DjJTon9gD6hZ8nCjSitaIXFQ.jpg" alt="...">
+                    <img id="poster" src="https://image.tmdb.org/t/p/w300{{el.poster_path}} " alt="...">
                     <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p>...</p>
-                      <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                      <p>{{el.title}}</p>
+                      <p>Release Date: {{el.release_date}}</p>
+
+                      <p><a href="#"class="btn btn-primary" role="button">Watch</a></p>
                     </div>
                   </div>
                 </div>
