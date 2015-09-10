@@ -4,6 +4,10 @@ var router = express.Router();
 var User = require('../models/User');
 var passport = require('passport');
 
+router.get('/movies/links', function(req, res, next) {
+  res.render('movies/links', { user: req.user });
+});
+
 router.get('/', function(req,res){
 function (err, links, id, data) {
     if (err) {
@@ -11,7 +15,7 @@ function (err, links, id, data) {
     }
     for(i=0;i<links.length; i++){
       console.log(links[i]);
-      res.render('movies/links',{data:data});
+    
     }
       console.log('%d total links found for "%s".', links.length, id);
 }
