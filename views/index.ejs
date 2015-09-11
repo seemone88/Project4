@@ -38,7 +38,10 @@
                     <img id="poster" src="http:/{{el.img}} " alt="...">
                     <div class="caption">
                       <p id="movieTitle">{{el.title}}</p>
-                      <p><a ng-show="" href="#"></a>Links:</p><br>
+                      Links:
+                        <a ng-href="{{el.links[0]}}" target="_blank">1</a>
+                        <a ng-href="{{el.links[1]}}" target="_blank">2</a>
+                        <a ng-href="{{el.links[2]}}" target="_blank">3</a>
                     </div>
                   </div>
                 </div>

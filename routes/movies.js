@@ -19,11 +19,9 @@ router.get("/:id",function(req,res) {
     if (!error && response.statusCode == 200){
     $ = cheerio.load(html);
 
-    var data={};
-
-
+        var data={};
         innerResults=[];
-        // var links=[];
+
         $('div.index_item.index_item_ie').each(function (i,element){
           var results=[];
           var links = linksArr;
@@ -48,19 +46,22 @@ router.get("/:id",function(req,res) {
 
 
         }); //end .each function
+
+
         function display(err, links, id) {
             if (err) {
                 return console.error(err.stack);
             }
-            for(i=0;i<links.length; i++){
-              console.log(links[i]);
+            for(var i=0;i<links.length; i++){
 
+                console.log(links[i]);
+                console.log(id);
             }
 
               console.log('%d total links found for "%s".', links.length, id);
 
               linksArr = links
-
+              console.log(linksArr);
 
         }
 
