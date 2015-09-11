@@ -7,9 +7,8 @@ var request = require('request');
 var cheerio = require('cheerio');
 var needle = require('needle');
 // the url you want to his is local host 3000/12345 12345 = movie your seraching
-
+var urlArray ;
 var innerResults;
-var linksArr;
 console.log(innerResults);
 console.log('____----____-');
 router.get("/:id",function(req,res) {
@@ -19,12 +18,14 @@ router.get("/:id",function(req,res) {
     if (!error && response.statusCode == 200){
     $ = cheerio.load(html);
 
+
         var data={};
         innerResults=[];
 
-        $('div.index_item.index_item_ie').each(function (i,element){
+        $('div.index_item.index_item_ie').each(function (){
+          var self = this;
           var results=[];
-          var links = linksArr;
+          // var urls = [];
           var a = $(this).children();
           var b = $(this).children().children();
           var c = $(this).children().next().children();
@@ -32,46 +33,65 @@ router.get("/:id",function(req,res) {
           var img = b.attr('src');
           var title = a.attr('title')
           var id = c.attr('id');
-           data = {
+
+
+          data = {
             url:url,
             img:img.substring(1,this.length),
             title:title.substring(6,this.length),
             id:id.substring(9,this.length),
-            links:links
-          },
-
-
-
+            links: []
+          };
+          primewire({
+              id: data.id
+          }, display);
+          console.log("=========================================");
+          console.log(data.links);
+          console.log(data.id);
           innerResults.push(data);
 
 
+
+          function display(err, links, id) {
+              if (err) {
+                  return console.error(err.stack);
+              }
+              for(var i=0;i<links.length; i++){
+                // for ( var j = 0 ; j < i ; j++ )
+                  // console.log(data);
+                  // console.log(id);
+              }
+
+                //console.log('%d total links found for "%s".', links.length, id);
+
+                //linksArr = links
+                console.log('links', links);
+                console.log('data', data);
+
+                innerResults.push(links);
+
+                // console.log("I'm in the display-----------------------");
+                // console.log(linksArr);
+
+                // linksArr = linksArr.reduce(function(a, b){
+                //      return a.concat(b);
+                // });
+                // console.log(linksArr);
+          }
+
+
         }); //end .each function
+        console.log(innerResults);
 
 
-        function display(err, links, id) {
-            if (err) {
-                return console.error(err.stack);
-            }
-            for(var i=0;i<links.length; i++){
-
-                console.log(links[i]);
-                console.log(id);
-            }
-
-              console.log('%d total links found for "%s".', links.length, id);
-
-              linksArr = links
-              console.log(linksArr);
-
-        }
 
 
         // Using an ID instead of title/year will result in less page load time.
 
-        primewire({
-            id: data.id
-        }, display);
-        res.json({data:innerResults, urls: linksArr})
+        // primewire({
+        //     id: data.id
+        // }, display);
+        res.json({data:innerResults})
 
 
 
