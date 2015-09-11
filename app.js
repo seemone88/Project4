@@ -11,7 +11,7 @@ var primewire = require('primewire')
 
 
 var routes = require('./routes/index');
-
+var movies = require('./routes/movies');
 var app = express();
 
 // view engine setup
@@ -35,6 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session())
 
 app.use('/', routes);
+app.use('/movies', movies);
 
 var User = require('./models/User');
 passport.use(new LocalStrategy(User.authenticate()));

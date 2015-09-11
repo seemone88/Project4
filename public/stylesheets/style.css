@@ -30,3 +30,10 @@ h3{
 .caption{
   color:yellow;
 }
+iframe{
+    display:none;
+}
+#movieTitle{
+  font-size: 13px;
+  max-height: 18px;
+}
