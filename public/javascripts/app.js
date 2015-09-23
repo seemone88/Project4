@@ -26,9 +26,10 @@ function MyController($http){
 self.showMovies = function(movies){
   var url = ('http://localhost:3000/movies/'+self.input)
   self.api = $http.get(url)
-  .success(function(data){
+  .success(function(data,links){
     // self.movies = data.movies;
     self.allMovie = data;
+    self.allLinks = links;
     console.log(self.allMovie);
 
   })

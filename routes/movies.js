@@ -6,23 +6,25 @@ var passport = require('passport');
 var request = require('request');
 var cheerio = require('cheerio');
 var needle = require('needle');
-// the url you want to his is local host 3000/12345 12345 = movie your seraching
 var urlArray ;
 var innerResults;
-console.log(innerResults);
-console.log('____----____-');
+
+
 router.get("/:id",function(req,res) {
   var search = req.params.id
   var url = 'http://www.primewire.ag/index.php?search_keywords='+search+'&key=81bc0fcf39e0538c&search_section=1'
+
   request(url, function (error, response, html){
     if (!error && response.statusCode == 200){
     $ = cheerio.load(html);
 
 
-        var data={};
-        innerResults=[];
 
-        $('div.index_item.index_item_ie').each(function (){
+        movies=[];
+        var links=[];
+        allLinks=[];
+
+        $('div.index_item.index_item_ie').each(function(){
           var self = this;
           var results=[];
           // var urls = [];
@@ -35,63 +37,61 @@ router.get("/:id",function(req,res) {
           var id = c.attr('id');
 
 
-          data = {
+          movie = {
             url:url,
             img:img.substring(1,this.length),
             title:title.substring(6,this.length),
-            id:id.substring(9,this.length),
-            links: []
+            id:id.substring(9,this.length)
+
           };
-          primewire({
-              id: data.id
-          }, display);
-          console.log("=========================================");
-          console.log(data.links);
-          console.log(data.id);
-          innerResults.push(data);
 
 
 
-          function display(err, links, id) {
-              if (err) {
-                  return console.error(err.stack);
-              }
-              for(var i=0;i<links.length; i++){
-                // for ( var j = 0 ; j < i ; j++ )
-                  // console.log(data);
-                  // console.log(id);
-              }
-
-                //console.log('%d total links found for "%s".', links.length, id);
-
-                //linksArr = links
-                console.log('links', links);
-                console.log('data', data);
-
-                innerResults.push(links);
-
-                // console.log("I'm in the display-----------------------");
-                // console.log(linksArr);
-
-                // linksArr = linksArr.reduce(function(a, b){
-                //      return a.concat(b);
-                // });
-                // console.log(linksArr);
-          }
-
-
+          // primewire({
+          //     id: data.id
+          // }, display);
+          // console.log("=========================================");
+          // console.log(data.id);
+          movies.push(movie);
         }); //end .each function
-        console.log(innerResults);
 
 
+        // function display(err, links, id) {
+        //     if (err) {
+        //         return console.error(err.stack);
+        //     }
+        //     // console.log(links[0]);
+        //     // console.log(links[1]);
+        //     // console.log(links[2]);
+        //     for(var i=0;i<3; i++){
+        //       var links = links[i];
+        //       test = {
+        //         links:links
+        //       }
+        //       allLinks.push(test);
+        //     }
+        //     console.log("THE LINKS GOT ADDED",allLinks);
+
+              // console.log("LINKS:",links);
+              //console.lo g('%d total links found for "%s".', links.length, id);
+
+              //linksArr = links
 
 
-        // Using an ID instead of title/year will result in less page load time.
+              // console.log("_+_+_+_+_+_+_+_+_");
+              // console.log("ALLLINKS:",allLinks);
+              // console.log("DATA:",data);
+              // console.log("LINKS:",links);
+              // console.log(innerResults);
+              // console.log("I'm in the display-----------------------");
+              // console.log(linksArr);
 
-        // primewire({
-        //     id: data.id
-        // }, display);
-        res.json({data:innerResults})
+              // linksArr = linksArr.reduce(function(a, b){
+              //      return a.concat(b);
+              // });
+              // console.log(linksArr);
+        // }
+
 
 
 
@@ -100,7 +100,57 @@ router.get("/:id",function(req,res) {
 
 
       }//end if statement
+//       request(url, function (error, response, html){
+//         if (!error && response.statusCode == 200){
+//         $ = cheerio.load(html);
+//       var dataID = data.id
+//
+//       var url2 = 'http://www.primewire.ag/watch-'+dataID
+//
+//       $('span.movie_version_link').each(function(){
+//         var self = this;
+//         var results = [];
+//         var a = $(this).children();
+//         var link = a.attr('href');
+//
+//         linkData = {
+//           link:link
+//         };
+//         allLinks.push(linkData)
+//         console.log("THIS IS WORKINGGGGGG");
+//         console.log("THIS IS THE LINKDATA:",allLinks);
+//       })//end .each function
+//
+// }
+// })
+        var movieCount = movies.length;
+        var i = 0;
+        function getLinks(index) {
+          primewire({
+            id: movies[index].id
+          }, function(err, links, id) {
+            if (err) {
+                return console.error(err.stack);
+            }
+            //
+            console.log(links);
+            movies[index].links = links;
+            if(i < (movieCount - 1)) {
+              i ++;
+              getLinks(i);
+            } else{
+              res.json({data:movies});
+            }
+          })
+        }
 
+        getLinks(i);
+
+
+        //console.log(movieCount)
+
+
+        // res.json({results:movies,links:allLinks})
     });//end request()
 })//end router.get
 
