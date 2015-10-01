@@ -26,21 +26,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('express-session')({
-  secret: "WDI Rocks",
-  resave: false,
-  saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session())
+
+
 
 app.use('/', routes);
 app.use('/movies', movies);
 
-var User = require('./models/User');
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
 app.locals.title = "S.I.M.O.N";
 
 mongoose.connect('mongodb://localhost:27017/project4_db');

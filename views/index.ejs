@@ -9,7 +9,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
   </head>
   <body class="container">
-
+  
 
 
     <br>
@@ -21,7 +21,7 @@
     <div class="container" ng-controller="MyController as vm" >
       <div class="row text-center">
 
-            <% if (user) { %>
+
               <form ng-submit="nm.submit()">
                 <input ng-model="vm.input" id="findMovies" type="text" name="findMovies" value="">
                 <button ng-click="vm.showMovies()" id="displayMovies">Find</button>
@@ -39,9 +39,9 @@
                     <div class="caption">
                       <p id="movieTitle">{{el.title}}</p>
                       Links:
-                        <a ng-href="{{el.links[0]}}" target="_blank">1</a>
-                        <a ng-href="{{el.links[1]}}" target="_blank">2</a>
-                        <a ng-href="{{el.links[2]}}" target="_blank">3</a>
+                        <a href="{{el.links[0]}}" target="_blank">1</a>
+                        <a href="{{el.links[1]}}" target="_blank">2</a>
+                        <a href="{{el.links[2]}}" target="_blank">3</a>
                     </div>
                   </div>
                 </div>
@@ -50,11 +50,7 @@
           </div>
 
 
-              <a href="/logout" class="btn btn-danger">Logout</a>
-            <% } else { %>
-              <a href="/login" class="btn btn-primary">Login</a>
-              <a href="/register" class="btn btn-info">Register</a>
-            <% } %>
+
           </div>
 
     </div>
