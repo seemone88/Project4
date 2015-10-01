@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="moviesApp">
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <link rel="stylesheet" href="/stylesheets/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <body class="container">
+  
+
+
+    <br>
+    <div class="page-header">
+      <h1><%= title %></h1>
+    </div>
+
+
+    <div class="container" ng-controller="MyController as vm" >
+      <div class="row text-center">
+
+
+              <form ng-submit="nm.submit()">
+                <input ng-model="vm.input" id="findMovies" type="text" name="findMovies" value="">
+                <button ng-click="vm.showMovies()" id="displayMovies">Find</button>
+              </form>
+
+              <h3>{{vm.input}}</h3>
+
+          <div class="thumbnails" >
+            <div class="seachDiv">
+              <div id="row" class="row">
+                <div id="tn" class="col-sm-6 col-md-3" ng-repeat="el in vm.allMovie.data">
+                  <div ng-if="$index % 4 == 0"></div>
+                  <div class="thumbnail">
+                    <img id="poster" src="http:/{{el.img}} " alt="...">
+                    <div class="caption">
+                      <p id="movieTitle">{{el.title}}</p>
+                      Links:
+                        <a href="{{el.links[0]}}" target="_blank">1</a>
+                        <a href="{{el.links[1]}}" target="_blank">2</a>
+                        <a href="{{el.links[2]}}" target="_blank">3</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          </div>
+
+    </div>
+  </div>
+  <script src="/javascripts/app.js"></script>
   </body>
 </html>
